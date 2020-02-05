@@ -32,7 +32,7 @@ abstract class BaseTag
         return $this->content;
     }
 
-    public function __toString()
+    public function toString() : string
     {
         $content = $this->getContent();
 
@@ -42,6 +42,11 @@ abstract class BaseTag
         }
 
         return HtmlHelper::tag($this->tag, $content, $this->attributes);
+    }
+
+    public function __toString()
+    {
+        return $this->toString();
     }
 
 }
