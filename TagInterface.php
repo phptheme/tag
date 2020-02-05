@@ -1,0 +1,20 @@
+<?php
+/**
+ * @author PhpTheme Dev Team <dev@getphptheme.com>
+ * @license MIT
+ * @link http://getphptheme.com
+ */
+namespace PhpTheme\Tag;
+
+interface TagInterface
+{
+
+    public function __construct(array $params = []);
+    
+    public function getContent();
+    
+    public function toString();
+    
+    public function __toString();
+    
+}
