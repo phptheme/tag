@@ -27,21 +27,12 @@ abstract class BaseTag
         }
     }
 
-    public static function factory(array $params = [])
-    {
-        $class = static::class;
-
-        $return = new $class($params);
-
-        return $return;
-    }
-
     public function getContent()
     {
         return $this->content;
     }
 
-    public function toString() : string
+    public function __toString()
     {
         $content = $this->getContent();
 
@@ -50,12 +41,7 @@ abstract class BaseTag
             return '';
         }
 
-        return HtmlHelper::tag($this->tag, $content, $this->attributes);        
-    }
-
-    public function __toString()
-    {
-        return $this->toString();
+        return HtmlHelper::tag($this->tag, $content, $this->attributes);
     }
 
 }
