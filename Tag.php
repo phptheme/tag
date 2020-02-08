@@ -40,7 +40,7 @@ abstract class Tag
 
         if (!$content && !$this->renderEmpty)
         {
-            return '';
+            return $content;
         }
 
         $attributes = HtmlHelper::mergeAttributes($this->defaultAttributes, $this->attributes);
