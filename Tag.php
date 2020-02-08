@@ -13,6 +13,8 @@ abstract class Tag
 
     public $tag;
 
+    public $defaultAttributes = [];
+
     public $attributes = [];
 
     public $renderEmpty = true;
@@ -41,7 +43,9 @@ abstract class Tag
             return '';
         }
 
-        return HtmlHelper::tag($this->tag, $content, $this->attributes);
+        $attributes = HtmlHelper::mergeAttributes($this->defaultAttributes, $this->attributes);
+
+        return HtmlHelper::tag($this->tag, $content, $attributes);
     }
 
     public function __toString()
