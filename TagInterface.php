@@ -13,7 +13,7 @@ interface TagInterface
     
     public function getContent();
     
-    public function toString();
+    public function toString() : string;
 
     public function getAttributes() : array;
 
