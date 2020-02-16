@@ -8,7 +8,7 @@ namespace PhpTheme\Tag;
 
 use PhpTheme\HtmlHelper\HtmlHelper;
 
-abstract class Tag
+class Tag implements TagInterface
 {
 
     public $tag;
@@ -29,6 +29,16 @@ abstract class Tag
         }
     }
 
+    public function getAttributes() : array
+    {
+        return $this->attributes;
+    }
+
+    public function getDefaultAttributes() : array
+    {
+        return $this->defaultAttributes;
+    }
+
     public function getContent()
     {
         return $this->content;
@@ -43,7 +53,7 @@ abstract class Tag
             return $content;
         }
 
-        $attributes = HtmlHelper::mergeAttributes($this->defaultAttributes, $this->attributes);
+        $attributes = HtmlHelper::mergeAttributes($this->getDefaultAttributes(), $this->getAttributes());
 
         return HtmlHelper::tag($this->tag, $content, $attributes);
     }
