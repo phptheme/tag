@@ -7,6 +7,7 @@
 namespace PhpTheme\Tag;
 
 use PhpTheme\HtmlHelper\HtmlHelper;
+use PhpTheme\HtmlEscaper\HtmlEscaper;
 
 class Tag implements TagInterface
 {
@@ -20,6 +21,8 @@ class Tag implements TagInterface
     public $renderEmpty = true;
 
     public $content;
+
+    public $escapeContent = false;
 
     public function __construct(array $params = [])
     {
@@ -41,7 +44,14 @@ class Tag implements TagInterface
 
     public function getContent()
     {
-        return $this->content;
+        $return = $this->content;
+
+        if ($this->escapeContent)
+        {
+            $return = HtmlEscaper::encode($return);
+        }
+
+        return $return;
     }
 
     public function toString() : string
